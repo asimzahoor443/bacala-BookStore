@@ -16,18 +16,34 @@ const Navbar = ({ containerStyles, toggleMenu, menuOpened }) => {
       icon: <IoLibrary />,
     },
     {
-      to: '/contact',
+      to: 'mailto:asimzahoor443@gmail.com',
       label: 'Contact',
       icon: <IoMailOpen />,
     },
   ];
   return (
     <nav className={containerStyles}>
+      {/* close button Navbar */}
+      {menuOpened && (
+        <>
+          <FaRegWindowClose
+            onClick={toggleMenu}
+            className="text-xl self-end cursor-pointer relative"
+          />
+        </>
+      )}
       {navItems.map(({ to, label, icon }) => (
         <div key={label} className="inline-flex relative top-1">
-          <NavLink>
-            <span>{icon}</span>
-            <span>{label}</span>
+          <NavLink
+            to={to}
+            className={({ isActive }) =>
+              isActive
+                ? 'active-link flexCenter gap-x-2 '
+                : 'flexCenter gap-x-2'
+            }
+          >
+            <span className="text-xl">{icon}</span>
+            <span className="medium-16">{label}</span>
           </NavLink>
         </div>
       ))}
