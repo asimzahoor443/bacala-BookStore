@@ -26,6 +26,8 @@ const Header = () => {
         {/* NavBar */}
         <div className="flex-1 ">
           <Navbar
+            menuOpened={menuOpened}
+            toggleMenu={toggleMenu}
             containerStyles={`${
               menuOpened
                 ? 'flex flex-col gap-y-16 h-screen w-[222px] absolute left-0 top-0 bg-white z-50 px-10 py-4 shadow-xl '

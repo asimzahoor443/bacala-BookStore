@@ -2,7 +2,7 @@ import React from 'react';
 import { TbHomeFilled } from 'react-icons/tb';
 import { IoLibrary, IoMailOpen } from 'react-icons/io5';
 import { FaRegWindowClose } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const Navbar = ({ containerStyles, toggleMenu, menuOpened }) => {
   const navItems = [
     {
@@ -28,8 +28,12 @@ const Navbar = ({ containerStyles, toggleMenu, menuOpened }) => {
         <>
           <FaRegWindowClose
             onClick={toggleMenu}
-            className="text-xl self-end cursor-pointer relative"
+            className="text-xl self-end cursor-pointer relative left-8"
           />
+          {/* logo */}
+          <Link to={'/'} className="bold-24 mb-10">
+            <h4 className="text-secondary">Bacala</h4>
+          </Link>
         </>
       )}
       {navItems.map(({ to, label, icon }) => (
