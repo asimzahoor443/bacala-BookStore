@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Navbar from './Navbar';
@@ -10,9 +10,30 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuOpened((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        if (menuOpened) {
+          setMenuOpened(false);
+        }
+      }
+
+      setActive(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [menuOpened]);
   return (
     <header className="fixed top-0 w-full left-0 right-0 z-50">
-      <div className="bg-white py-2.5 max-padd-container flexBetween border-b border-slate-900/10 rounded transition-all duration-300">
+      <div
+        className={`${
+          active ? 'bg-white py-2.5' : 'py-3'
+        } max-padd-container flexBetween border-b border-slate-900/10 rounded transition-all duration-300`}
+      >
         <Link to={'/'} className="flex-1 flex items-center justify-start">
           <img
             src={logo}

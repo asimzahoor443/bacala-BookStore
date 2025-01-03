@@ -38,17 +38,28 @@ const Navbar = ({ containerStyles, toggleMenu, menuOpened }) => {
       )}
       {navItems.map(({ to, label, icon }) => (
         <div key={label} className="inline-flex relative top-1">
-          <NavLink
-            to={to}
-            className={({ isActive }) =>
-              isActive
-                ? 'active-link flexCenter gap-x-2 '
-                : 'flexCenter gap-x-2'
-            }
-          >
-            <span className="text-xl">{icon}</span>
-            <span className="medium-16">{label}</span>
-          </NavLink>
+          {to.startsWith('mailto') ? (
+            <a
+              onClick={menuOpened ? toggleMenu : undefined}
+              href={to}
+              className="flexCenter gap-x-2"
+            >
+              <span className="text-xl">{icon}</span>
+              <span className="medium-16">{label}</span>
+            </a>
+          ) : (
+            <NavLink
+              to={to}
+              className={({ isActive }) =>
+                isActive
+                  ? 'active-link flexCenter gap-x-2 '
+                  : 'flexCenter gap-x-2'
+              }
+            >
+              <span className="text-xl">{icon}</span>
+              <span className="medium-16">{label}</span>
+            </NavLink>
+          )}
         </div>
       ))}
     </nav>
