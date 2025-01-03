@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Navbar from './Navbar';
 import { CgMenuLeft } from 'react-icons/cg';
 import { RiShoppingBag4Line, RiUserLine } from 'react-icons/ri';
+import { TbUserCircle } from 'react-icons/tb';
 const Header = () => {
+  const navigate = useNavigate();
+  const [token, settoken] = useState('');
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
@@ -66,11 +69,30 @@ const Header = () => {
             <RiShoppingBag4Line className="text-[33px] bg-secondary text-primary p-1.5 rounded-full" />
             <span className="bg-primary ring-1 ring-slate-900/5 medium-14 absolute left-5 -top-2.5 flexCenter w-5 h-5 rounded-full shadow-md"></span>
           </Link>
-          <div>
-            <div></div>
-            <button className="btn-outline flexCenter gap-x-2">
-              Login <RiUserLine />
-            </button>
+          <div className="relative group">
+            <div onClick={!token && navigate('/')} className="">
+              {token ? (
+                <div>
+                  <TbUserCircle className="text-[29px] cursor-pointer" />
+                </div>
+              ) : (
+                <button className="btn-outline flexCenter gap-x-2">
+                  Login <RiUserLine />
+                </button>
+              )}
+            </div>
+            {token && (
+              <>
+                <ul className="bg-white p-1 w-32 ring-1 ring-slate-900/5 rounded absolute right-0 top-7 hidden group-hover:flex flex-col regular-14 shadow-md">
+                  <li className="p-2 text-tertiary rounded-md hover:bg-primary cursor-pointer">
+                    Orders
+                  </li>
+                  <li className="p-2 text-tertiary rounded-md hover:bg-primary cursor-pointer">
+                    Logout
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
         </div>
       </div>
