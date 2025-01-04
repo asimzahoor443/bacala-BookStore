@@ -4,7 +4,7 @@ import bg from '../assets/bg.png';
 import pencil from '../assets/pencil.png';
 const Hero = () => {
   return (
-    <section className="max-padd-container py-20 xl:py36 ">
+    <section className="max-padd-container py-20 xl:py-36 ">
       <div className="flexCenter gap-12 flex-col xl:flex-row">
         {/* left side */}
 
@@ -14,9 +14,16 @@ const Hero = () => {
             <span className="inline-flex">
               <span className="inline-flex items-center justify-center p-5 h-16 w-16 bg-secondary text-white -rotate-[31deg] rounded-full">
                 B
-              </span>{' '}
-              ooks
+              </span>
+              ooks{' '}
             </span>
+            <img
+              src={pencil}
+              alt="pencilImg"
+              height={49}
+              width={49}
+              className="inline-flex relative bottom-2"
+            />{' '}
             That Inspire Your World
           </h1>
           <p>
@@ -25,14 +32,14 @@ const Hero = () => {
             enrich your journey. From timeless classics to modern masterpieces,
             find the perfect read for every moment
           </p>
-          <div>
+          <div className="mt-6">
             <Link to={'/store'} className="btn-secondaryOne">
               Explore Now
             </Link>
           </div>
         </div>
         {/* Right Side  */}
-        <div>
+        <div className="flex flex-1 relative z-10 top-12">
           <div>
             <img src={bg} alt="" height={588} width={588} />
           </div>
